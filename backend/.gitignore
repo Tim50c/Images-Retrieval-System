@@ -1,1 +1,4 @@
 .venv
+dataset/
+index.faiss
+metadata.json
