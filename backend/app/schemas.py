@@ -84,7 +84,7 @@ class HealthResponse(BaseModel):
         json_schema_extra = {
             "example": {
                 "status": "active",
-                "model": "ViT-B/32",
+                "model": "ViT-L/14",
                 "indexed_images": 10000
             }
         }

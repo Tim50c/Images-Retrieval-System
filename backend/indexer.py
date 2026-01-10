@@ -9,7 +9,7 @@ Usage:
     
 Environment Variables:
     CLIP_DEVICE: Device to run CLIP on (default: cpu)
-    CLIP_MODEL: CLIP model variant (default: ViT-B/32)
+    CLIP_MODEL: CLIP model variant
 """
 import json
 import logging
@@ -35,7 +35,7 @@ IMAGE_FOLDER = os.getenv("DATASET_PATH", "dataset")
 INDEX_FILE = os.getenv("INDEX_PATH", "index.faiss")
 METADATA_FILE = os.getenv("METADATA_PATH", "metadata.json")
 DEVICE = os.getenv("CLIP_DEVICE", "cpu")
-CLIP_MODEL = os.getenv("CLIP_MODEL", "ViT-B/32")
+CLIP_MODEL = os.getenv("CLIP_MODEL", "ViT-L/14")
 SUPPORTED_EXTENSIONS = {'.png', '.jpg', '.jpeg', '.webp', '.gif'}
 BATCH_SIZE = 32  # Process images in batches for efficiency
 

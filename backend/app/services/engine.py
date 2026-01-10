@@ -74,7 +74,7 @@ class SearchEngine:
             text: Input text query
             
         Returns:
-            Normalized embedding vector (512-dimensional for ViT-B/32)
+            Normalized embedding vector (768-dimensional for ViT-L/14)
         """
         text_tokens = clip.tokenize([text]).to(self.device)
         with torch.no_grad():
@@ -89,7 +89,7 @@ class SearchEngine:
             image_path: Path to the image file
             
         Returns:
-            Normalized embedding vector (512-dimensional for ViT-B/32)
+            Normalized embedding vector (768-dimensional for ViT-L/14)
             
         Raises:
             FileNotFoundError: If the image file doesn't exist
@@ -120,7 +120,7 @@ class SearchEngine:
         Search for similar images using the FAISS index.
         
         Args:
-            query_vector: Normalized embedding vector (512-dimensional for ViT-B/32)
+            query_vector: Normalized embedding vector (768-dimensional for ViT-L/14)
             top_k: Number of results to return (default: 20)
             
         Returns:
@@ -272,7 +272,7 @@ class SearchEngine:
         alpha: float = 1.0,
         beta: float = 0.75,
         gamma: float = 0.25,
-        delta: float = 0.6,
+        delta: float = 0.8,
         use_text_parsing: bool = True
     ) -> np.ndarray:
         """
@@ -294,7 +294,7 @@ class SearchEngine:
             alpha: Weight for the original query (default: 1.0, 0.0 if no query)
             beta: Weight for relevant documents centroid (default: 0.75)
             gamma: Weight for irrelevant documents centroid (default: 0.25)
-            delta: Weight for text feedback vector (default: 0.6)
+            delta: Weight for text feedback vector (default: 0.8)
             use_text_parsing: Whether to parse text for concepts (default: True)
             
         Returns:
@@ -311,7 +311,7 @@ class SearchEngine:
         # --- Adaptive Weighting ---
         # If user provided image feedback, reduce text weight to avoid conflict
         has_image_feedback = bool(relevant_ids or irrelevant_ids)
-        effective_delta = delta * 0.6 if has_image_feedback else delta
+        effective_delta = delta * 0.5 if has_image_feedback else delta
         
         # If no original query but text feedback exists, increase text weight
         if alpha == 0.0 and feedback_text:

@@ -35,7 +35,7 @@ class Settings:
         
         # Model Configuration
         self.DEVICE: str = os.getenv("CLIP_DEVICE", "cpu")
-        self.CLIP_MODEL: str = os.getenv("CLIP_MODEL", "ViT-B/32")
+        self.CLIP_MODEL: str = os.getenv("CLIP_MODEL", "ViT-L/14")
         
         # API Configuration
         self.BASE_URL: str = os.getenv("BASE_URL", "http://localhost:8000")
